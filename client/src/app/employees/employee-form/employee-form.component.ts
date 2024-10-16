@@ -16,9 +16,14 @@ export class EmployeeFormComponent {
     this.submitted = true;
 
     if(this.service.employeeForm.valid){
-    console.log('Button works');
-    console.log(this.service.employeeForm.value);
+     this.service.postEmployee().subscribe(res => {
+      console.log('got the response');
+     })
     }
+  }
+  resetForm(){
+    this.service.employeeForm.reset();
+    this.submitted = false;
   }
 
 }

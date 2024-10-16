@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors =require('cors');
 
 // local Imports
 const connectDb = require('./db.js');
@@ -10,6 +11,7 @@ const app =express();
 
 //Middleware
 app.use(bodyParser.json());
+app.use(cors({origin:'http://localhost:4200'}))
 app.use('/api/employees', employeeRoutes);
 //this can only added after all ther router 
 app.use(errorHandler);

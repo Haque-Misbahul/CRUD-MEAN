@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 import { EmployeesComponent } from './employees/employees.component';
 import { EmployeeFormComponent } from './employees/employee-form/employee-form.component'; 
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     BrowserModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]  // Bootstrap the main component
