@@ -19,3 +19,8 @@ form input::placeholder {
 form button[type=submit] {
     text-transform: uppercase;
 }
+
+/* form validation */
+form.ng-invalid.submitted input.ng-invalid {
+    border-color: #b02a37;
+}

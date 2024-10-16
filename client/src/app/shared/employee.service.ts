@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -7,14 +7,15 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class EmployeeService {
 
   employeeForm: FormGroup;
+  
   constructor(private fb:FormBuilder) { 
 
 this.employeeForm = this.fb.group({
   _id: [null],
-  fullName: [''],
-  position: [''],
+  fullName: ['',Validators.required],
+  position: ['',Validators.required],
   location: [''],
-  salary: ['']
+  salary: ['',Validators.required]
 })
 
   }
