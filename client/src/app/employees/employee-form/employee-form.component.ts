@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { EmployeeService } from '../../shared/employee.service';
+import { Employee } from '../../shared/employee.model';
 
 @Component({
   selector: 'app-employee-form',
@@ -18,11 +19,12 @@ export class EmployeeFormComponent {
     if(this.service.employeeForm.valid){
      this.service.postEmployee().subscribe(res => {
       console.log('got the response');
+      this.resetForm();
      })
     }
   }
   resetForm(){
-    this.service.employeeForm.reset();
+    this.service.employeeForm.reset(new Employee());
     this.submitted = false;
   }
 
