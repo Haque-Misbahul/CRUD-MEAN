@@ -18,7 +18,7 @@ export class EmployeeService {
 
     
 this.employeeForm = this.fb.group({
-  _id: [null],
+  _id: [''],
   fullName: ['',Validators.required],
   position: ['',Validators.required],
   location: [''],
@@ -36,6 +36,11 @@ fetchEmployeeList(){
 
 postEmployee(){
   return this.http.post(this.baseURL, this.employeeForm.value)
+  .pipe(catchError(this.errorHandler));
+}
+
+putEmployee(){
+  return this.http.put (this.baseURL+this.employeeForm.get('_id')?.value, this.employeeForm.value)
   .pipe(catchError(this.errorHandler));
 }
 

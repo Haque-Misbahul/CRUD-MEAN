@@ -13,17 +13,46 @@ export class EmployeeFormComponent {
 
   constructor(public service: EmployeeService) {}
 
-  onSubmit(){
+  onSubmit() {
     this.submitted = true;
-
-    if(this.service.employeeForm.valid){
-     this.service.postEmployee().subscribe(res => {
-      console.log('got the response');
-      this.resetForm();
-      this.service.fetchEmployeeList();
-     })
+  
+    const confirmSubmit = confirm('Do you want to submit?');
+  
+    if(this.service.employeeForm.get('_id')?.value == '')
+    { 
+      if (confirmSubmit && this.service.employeeForm.valid) {
+        this.service.postEmployee().subscribe(res => {
+          console.log('got the response');
+          alert('Form submitted successfully!');  
+          this.resetForm();
+          this.service.fetchEmployeeList();
+        }, err => {
+          console.error('Error occurred:', err);
+          alert('Failed to submit the form!');  
+        });
+      } else {
+        console.log('Form submission canceled or invalid form');
+      }
     }
+    else{
+      if (confirmSubmit && this.service.employeeForm.valid) {
+        this.service.putEmployee().subscribe(res => {
+          console.log('got the response');
+          alert('Form updated successfully!');  
+          this.resetForm();
+          this.service.fetchEmployeeList();
+        }, err => {
+          console.error('Error occurred:', err);
+          alert('Failed to update the form!');  
+        });
+      } else {
+        console.log('Form update canceled or invalid form');
+      }
+
+    }
+  
   }
+  
   resetForm(){
     this.service.employeeForm.reset(new Employee());
     this.submitted = false;
