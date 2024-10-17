@@ -10,6 +10,7 @@ import { Employee } from './employee.model';
 export class EmployeeService {
 
   employeeForm!: FormGroup;
+  submitted = false;
   list: Employee[] = [];
   readonly baseURL = 'http://localhost:3000/api/employees/';
 
@@ -43,6 +44,10 @@ putEmployee(){
   return this.http.put (this.baseURL+this.employeeForm.get('_id')?.value, this.employeeForm.value)
   .pipe(catchError(this.errorHandler));
 }
+deleteEmployee(_id: string){
+  return this.http.delete (this.baseURL+_id)
+  .pipe(catchError(this.errorHandler));
+}
 
 private errorHandler(error: HttpErrorResponse) {
   if (error.status === 0) {
@@ -52,6 +57,12 @@ private errorHandler(error: HttpErrorResponse) {
       `Backend returned code ${error.status}, body was: `, error.error);
   }
   return throwError(() => new Error('Something bad happened; please try again later.'));
+}
+
+
+resetForm(){
+  this.employeeForm.reset(new Employee());
+  this.submitted = false;
 }
 
 }

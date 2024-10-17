@@ -24,4 +24,13 @@ constructor(public service: EmployeeService) {}
     })
   }
 
+  onDelete(_id:string){
+    if(confirm('Are you want to delete this record?')){
+      this.service.deleteEmployee(_id).subscribe(res =>{
+        this.service.fetchEmployeeList();
+        this.service.resetForm();
+      })
+    }
+  }
+
 }

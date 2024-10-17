@@ -25,7 +25,8 @@
                             <td (click)="populatedForm(emp)">{{emp.fullName}}</td>
                             <td (click)="populatedForm(emp)">{{emp.position}}</td>
                             <td>
-                                <i class="far fa-trash-alt fa-lg text-secondary"></i>
+                                <i class="far fa-trash-alt fa-lg text-secondary"
+                                (click)="onDelete(emp._id)"></i>
                             </td>
                         </tr>
                     </tbody>

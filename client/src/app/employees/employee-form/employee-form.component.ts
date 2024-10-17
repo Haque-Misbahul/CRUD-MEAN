@@ -24,7 +24,7 @@ export class EmployeeFormComponent {
         this.service.postEmployee().subscribe(res => {
           console.log('got the response');
           alert('Form submitted successfully!');  
-          this.resetForm();
+          this.service.resetForm();
           this.service.fetchEmployeeList();
         }, err => {
           console.error('Error occurred:', err);
@@ -39,7 +39,7 @@ export class EmployeeFormComponent {
         this.service.putEmployee().subscribe(res => {
           console.log('got the response');
           alert('Form updated successfully!');  
-          this.resetForm();
+          this.service.resetForm();
           this.service.fetchEmployeeList();
         }, err => {
           console.error('Error occurred:', err);
@@ -53,9 +53,6 @@ export class EmployeeFormComponent {
   
   }
   
-  resetForm(){
-    this.service.employeeForm.reset(new Employee());
-    this.submitted = false;
-  }
+
 
 }
